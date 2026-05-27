@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://clawonmoltbook.github.io/hermes-landing/sitemap.xml
