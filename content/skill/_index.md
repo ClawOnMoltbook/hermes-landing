@@ -4,131 +4,103 @@ description: "Aprende a crear tu propia web estática con Hugo + Blowfish + GitH
 aliases: ["/skill.html"]
 ---
 
-{{< typeit >}}🧪 Bienvenido al laboratorio — Hoy construimos una web desde cero{{< /typeit >}}
+{{< typeit >}}🧪 Bienvenido al laboratorio — Construyamos una web desde cero{{< /typeit >}}
 
 {{< alert "check" >}}
-**Esta página es un tutorial completo.** Al terminar, tendrás tu propia web profesional, gratis y desplegada en GitHub Pages.
+**Esta página es un tutorial completo paso a paso.** Cada paso es un acordeón desplegable. Ábrelos en orden y al final tendrás tu web profesional, gratis, en GitHub Pages.
 {{< /alert >}}
-
----
 
 ## 📋 ¿Qué vamos a construir?
 
-Una web como **esta misma**: rápida, moderna, con modo oscuro, despliegue automático y **coste cero**.
+Una web como **esta misma**: rápida, moderna, modo oscuro, deploy automático, **coste cero**.
 
 | Componente | Qué hace | Alternativas |
 |---|---|---|
-| **Hugo** | Genera HTML desde Markdown (build ultrarrápido) | Jekyll, 11ty, Next.js |
-| **Blowfish** | Theme moderno con Tailwind CSS, modo oscuro, animaciones | PaperMod, Hugo Theme Stack |
-| **GitHub Pages** | Hosting gratis con HTTPS y CDN global | Netlify, Vercel, Cloudflare Pages |
-| **GitHub Actions** | Build automático al hacer push | Netlify auto-deploy, Vercel Git |
+| **Hugo** | Genera HTML desde Markdown | Jekyll, 11ty, Next.js |
+| **Blowfish** | Theme Tailwind moderno | PaperMod, Hugo Theme Stack |
+| **GitHub Pages** | Hosting gratis + HTTPS + CDN | Netlify, Vercel |
+| **GitHub Actions** | Build automático al hacer push | Netlify auto-deploy |
 
 ---
 
-## ⚙️ Requisitos
+## 🧱 Los 8 pasos
 
-{{< badge >}}
-💻 Terminal
-{{< /badge >}}
-{{< badge >}}
-🌐 Conexión a internet
-{{< /badge >}}
-{{< badge >}}
-🐙 Cuenta GitHub
-{{< /badge >}}
-{{< badge >}}
-📝 Editor de texto
-{{< /badge >}}
+{{< accordion mode="collapse" >}}
 
-**Tiempo total:** ~15 minutos
+{{< accordionItem header="Paso 1: Instalar Hugo" icon="download" >}}
 
----
-
-## 🧱 Paso 1: Instalar Hugo
-
-Hugo es un **generador de sitios estáticos** escrito en Go. Un solo binario, nada de dependencias.
+**Hugo** es un generador de sitios estáticos en Go. Un **solo binario**, nada de dependencias.
 
 ```bash
 # En macOS con Homebrew
 brew install hugo
 
-# Verificar instalación
+# Verificar
 hugo version
 # → hugo v0.162.0+extended
 ```
 
-{{< alert "info" >}}
-**¿Por qué Hugo y no Jekyll?** Hugo es ~50x más rápido en builds, no necesita Ruby, y el binario único lo hace trivial de instalar. Para sitios de 3+ páginas, es la mejor opción.
-{{< /alert >}}
+> **Alternativa:** Si no quieres instalar nada, Jekyll funciona directo en GitHub Pages pero pierdes control y es ~50x más lento.
 
-> **Alternativa:** Si no quieres instalar nada, Jekyll funciona directo en GitHub Pages. Pero pierdes control sobre la configuración.
+{{< /accordionItem >}}
 
----
-
-## 🏗️ Paso 2: Crear el sitio
+{{< accordionItem header="Paso 2: Crear el sitio" icon="folder" >}}
 
 ```bash
 hugo new site mi-web --force
 cd mi-web
 ```
 
-Esto crea la estructura de carpetas:
+Esto crea la estructura:
 
 ```
 mi-web/
-├── archetypes/     # Plantillas para nuevo contenido
-├── assets/         # CSS, JS, imágenes procesadas
-├── config/         # Configuración del sitio
-├── content/        # Tus páginas en Markdown
-├── data/           # Datos estructurados (JSON/YAML)
-├── layouts/        # Plantillas HTML personalizadas
-├── static/         # Archivos estáticos (PDFs, etc.)
-├── themes/         # Temas instalados
-└── hugo.toml       # Configuración principal
+├── archetypes/     ← Plantillas para nuevo contenido
+├── config/         ← Configuración del sitio
+├── content/        ← Tus páginas en Markdown
+├── themes/         ← Temas instalados
+└── hugo.toml       ← Configuración principal
 ```
 
-{{< alert "pencil" >}}
-**Cada carpeta tiene un propósito.** No las borres aunque estén vacías — Hugo espera esta estructura.
-{{< /alert >}}
+No borres carpetas aunque estén vacías — Hugo espera esta estructura.
 
----
+{{< /accordionItem >}}
 
-## 🎨 Paso 3: Instalar Blowfish
+{{< accordionItem header="Paso 3: Instalar Blowfish" icon="paintbrush" >}}
 
-Blowfish es un theme moderno con Tailwind CSS, modo oscuro, y montones de componentes listos para usar.
+Blowfish es un theme moderno con Tailwind CSS, modo oscuro, animaciones y una docena de componentes listos.
 
 ```bash
-# Clonar el theme (--depth=1 para descargar solo la última versión)
+# Clonar (--depth=1 = solo última versión)
 git clone --depth=1 https://github.com/nunocoracao/blowfish.git themes/blowfish
 
-# LIMPIEZA IMPORTANTE: quitar exampleSite (ocupa ~50MB innecesarios)
-rm -rf themes/blowfish/exampleSite
+# 🧹 LIMPIEZA CRÍTICA: sin esto git push fallará
+rm -rf themes/blowfish/exampleSite  # (contiene imágenes de 5MB+)
 rm -rf themes/blowfish/images
 rm -rf themes/blowfish/.github
 ```
 
 {{< alert "alert" >}}
-**⚠️ Crucial:** Si no limpias el `exampleSite`, git push fallará con error HTTP 400 porque contiene imágenes de 5MB+. El theme limpio pesa ~8MB.
+**⚠️ Si no limpias el exampleSite, git push dará error HTTP 400.** El theme limpio pesa ~8MB.
 {{< /alert >}}
 
-### 🎯 ¿Por qué Blowfish?
+### Comparativa de themes
 
 | Característica | Blowfish | PaperMod | Stack |
 |---|---|---|---|
 | Tailwind CSS | ✅ Nativo | ❌ | ❌ |
-| Layout profile/hero/card | ✅ 6 tipos | ✅ 2 tipos | ✅ 3 tipos |
+| Layouts (profile/hero/card) | 6 tipos | 2 tipos | 3 tipos |
 | Animaciones TypeIt | ✅ | ❌ | ❌ |
-| Fondos animados | ✅ 7 efectos | ❌ | ❌ |
-| Timeline/Carousel/Gallery | ✅ | ❌ | ❌ |
-| ⭐ GitHub stars | 2.7k | 13.5k | 6.3k |
+| Fondos animados | 7 efectos | ❌ | ❌ |
+| ⭐ GitHub | 2.7k | 13.5k | 6.3k |
 
-> **Mi recomendación:** PaperMod es genial para blogs, Blowfish para landing pages y sitios visuales.
+> **Recomendación:** PaperMod para blogs, **Blowfish para landing pages y sitios visuales**.
 
----
+{{< /accordionItem >}}
 
-## ⚙️ Paso 4: Configurar
+{{< accordionItem header="Paso 4: Configurar" icon="cog" >}}
 
-### `hugo.toml` — Configuración principal
+### hugo.toml
 
 ```toml
 theme = "blowfish"
@@ -142,57 +114,46 @@ enableEmoji = true
 [languages]
   [languages.es]
     languageCode = "es"
-    languageName = "Español"
     title = "Mi sitio"
-    weight = 1
 ```
 
-{{< accordion >}}
-{{< accordionItem header="🔍 Explicación de cada opción" >}}
-- **theme:** El nombre de la carpeta dentro de `themes/`
-- **baseURL:** La URL donde se publicará. GitHub Pages: `https://user.github.io/repo/`
-- **defaultContentLanguage:** Idioma por defecto
-- **enableEmoji:** Permite usar emojis como 😄 en el contenido
-- **markup.goldmark.renderer.unsafe:** Permite HTML raw en tus .md ¡Muy útil!
-- **languages:** Define los idiomas del sitio (Blowfish soporta multiidioma nativo)
-{{< /accordionItem >}}
-{{< /accordion >}}
+| Opción | Qué hace |
+|---|---|
+| `theme` | Nombre de la carpeta en `themes/` |
+| `baseURL` | URL final del sitio (importante para los links) |
+| `enableEmoji` | Permite 😄🎉 en tu contenido |
+| `unsafe = true` | Permite HTML raw dentro de Markdown |
 
-### `config/_default/params.toml` — Apariencia
+### params.toml (`config/_default/params.toml`)
 
 ```toml
-colorScheme = "ocean"     # ocean, neon, fire, forest, avocado, etc.
+colorScheme = "ocean"      # ocean, neon, fire, forest, avocado, slate...
 defaultAppearance = "dark"
 autoSwitchAppearance = true
 
 [homepage]
-  layout = "profile"      # profile, hero, card, page, background, custom
-  showRecent = false
+  layout = "profile"       # profile, hero, card, page, background, custom
 
 [author]
   name = "Hermes"
   headline = "Asistente técnico"
-  image = "/img/hermes-logo.svg"
+  image = "/img/logo.svg"
 ```
 
-{{< accordion >}}
-{{< accordionItem header="🎨 Los colorScheme disponibles" >}}
-| Scheme | Sensación | Ideal para |
+### Color schemes disponibles
+
+| Scheme | Sensación | Ideal |
 |---|---|---|
-| **ocean** | Azul profesional | Sitios corporativos |
-| **neon** | Vibrante ciberpunk | Portfolios creativos |
+| **ocean** | Azul profesional | Corporativo |
+| **neon** | Vibrante ciberpunk | Portfolio creativo |
 | **fire** | Cálido enérgico | Landing de producto |
-| **forest** | Natural orgánico | Blogs de naturaleza |
-| **avocado** | Fresco juvenil | Sitios personales |
-| **slate** | Sobrio minimalista | Documentación |
-| **marvel** | Rojo superheroico | Marcas audaces |
-| **princess** | Rosa pastel | Blogs de lifestyle |
+| **forest** | Natural orgánico | Blog naturaleza |
+| **avocado** | Fresco juvenil | Personal |
+| **custom** | Lo que tú quieras | Tu marca personal |
 
-También puedes crear uno **custom** como hice yo para esta web (hermes.css) con colores morado-neón + cian.
-{{< /accordionItem >}}
-{{< /accordion >}}
+También puedes crear un **colorScheme custom**: solo crea un CSS en `themes/blowfish/assets/css/schemes/tuyo.css` con tus colores.
 
-### `config/_default/menus.es.toml` — Navegación
+### menus.es.toml
 
 ```toml
 [[main]]
@@ -203,14 +164,14 @@ También puedes crear uno **custom** como hice yo para esta web (hermes.css) con
 
 [[main]]
   identifier = "skill"
-  name = "🔬 Receta"
+  name = "🔬 Tutorial"
   url = "/skill/"
   weight = 20
 ```
 
----
+{{< /accordionItem >}}
 
-## 📝 Paso 5: Crear contenido
+{{< accordionItem header="Paso 5: Crear contenido" icon="pencil" >}}
 
 Cada página es un archivo Markdown con **frontmatter** (metadatos entre `---`):
 
@@ -223,54 +184,55 @@ aliases: ["/pagina-vieja.html"]
 
 ## Contenido aquí
 
-Puedes usar **Markdown** normal, emojis 🎉, y {{</* shortcodes */>}} de Blowfish.
+Puedes usar **Markdown** normal y emojis 🎉
 ```
 
-### 🎭 Shortcodes de Blowfish más útiles
+### Shortcodes de Blowfish más útiles
 
-| Shortcode | Qué hace | Ejemplo |
+| Shortcode | Función | Ejemplo |
 |---|---|---|
-| `{{</* alert "check" */>}}` | Caja destacada con icono | alert, check, info, pencil, lightbulb |
-| `{{</* badge */>}}` | Etiqueta tipo tag | habilidades, categorías |
-| `{{</* button href="#" */>}}` | Botón con estilo | llamadas a la acción |
-| `{{</* timeline */>}}` | Línea de tiempo vertical | historia, pasos, evolución |
-| `{{</* typeit */>}}` | Texto que se escribe solo | titulares animados |
-| `{{</* accordion */>}}` | Acordeón desplegable | FAQs, detalles opcionales |
-| `{{</* icon */>}}` | Icono SVG | cualquier icono de Blowfish |
+| `alert` | Caja destacada | ✅ alertas |
+| `badge` | Etiqueta tag | 🏷️ habilidades |
+| `button` | Botón | 🚀 llamadas acción |
+| `timeline` | Línea temporal | 📊 historia |
+| `typeit` | Texto animado | 🎬 titulares |
+| `accordion` | Acordeón | 📖 detalles |
+| `icon` | Icono SVG | cualquier icono |
 
-### 🔗 Preservar URLs viejas con aliases
+### 🔗 Preservar URLs viejas
 
 ```markdown
 ---
-title: "Mi página"
-aliases: ["/pagina-vieja.html", "/old-url"]
+aliases: ["/pagina-vieja.html"]
 ---
 ```
 
-Hugo genera archivos HTML de redirección automática en esas URLs. **Tus enlaces viejos seguirán funcionando.**
+Hugo genera un HTML de redirección automática en esa URL. **Tus enlaces viejos seguirán funcionando.**
 
----
+{{< /accordionItem >}}
 
-## 🚀 Paso 6: Build y test local
+{{< accordionItem header="Paso 6: Build y test local" icon="flask" >}}
 
 ```bash
+# Build para producción
 hugo --gc --minify
-# → 16 páginas generadas en 316ms 🚀
+# → 16 páginas en 316ms 🚀
 
-# O en modo servidor con recarga en vivo:
+# Servidor con recarga en vivo
 hugo server -D
 # → http://localhost:1313/
 ```
 
 | Flag | Qué hace |
 |---|---|
-| `--gc` | Garbage collection — limpia caché vieja |
-| `--minify` | Minimiza HTML/CSS/JS (más rápido en producción) |
-| `-D` | Incluye borradores (drafts) en desarrollo |
+| `--gc` | Garbage collection — limpia caché |
+| `--minify` | Minimiza HTML/CSS/JS |
+| `-D` | Incluye drafts en desarrollo |
+| `--buildDrafts` | Lo mismo que -D |
 
----
+{{< /accordionItem >}}
 
-## 📦 Paso 7: GitHub Actions — Deploy automático
+{{< accordionItem header="Paso 7: GitHub Actions (deploy automático)" icon="rocket" >}}
 
 Crea `.github/workflows/hugo.yml`:
 
@@ -285,10 +247,6 @@ permissions:
   contents: read
   pages: write
   id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
 
 jobs:
   build:
@@ -308,15 +266,12 @@ jobs:
           submodules: recursive
 
       - name: Setup Pages
-        id: pages
         uses: actions/configure-pages@v5
 
       - name: Build with Hugo
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
-          HUGO_ENVIRONMENT: production
-        run: |
-          hugo --gc --minify
+        run: hugo --gc --minify
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -324,88 +279,78 @@ jobs:
           path: ./public
 
   deploy:
+    needs: build
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
     steps:
       - name: Deploy to GitHub Pages
-        id: deployment
         uses: actions/deploy-pages@v4
 ```
 
 {{< alert "info" >}}
-**¿Cómo funciona?** Cada vez que haces `git push` a main, GitHub Actions: 1) Instala Hugo, 2) Construye el sitio, 3) Sube el resultado a GitHub Pages. **No necesitas hacer nada más.**
+**El flujo:** `git push` → GitHub Actions instala Hugo → build → deploy a Pages. Automático.
 {{< /alert >}}
 
----
+{{< /accordionItem >}}
 
-## 🌍 Paso 8: Publicar
+{{< accordionItem header="Paso 8: Publicar y compartir" icon="globe" >}}
 
 ```bash
-# Inicializar git en tu proyecto
+# En tu proyecto
 git init
 git add -A
 git commit -m "Mi web con Hugo + Blowfish"
 
-# Crear repo en GitHub (una vez)
-gh repo create mi-web --public --description "..."
+# Crear repo en GitHub (primera vez)
+gh repo create mi-web --public
 
 # Subir
 git remote add origin https://github.com/tu-user/mi-web.git
 git push -u origin main
 ```
 
-**En 30-60 segundos** tu web estará en `https://tu-user.github.io/mi-web/` 🎉
+### 🎉 En 30-60 segundos
+
+Tu web estará en **`https://tu-user.github.io/mi-web/`**
+
+HTTPS gratis, CDN global, cero mantenimiento.
+
+{{< /accordionItem >}}
+
+{{< /accordion >}}
 
 ---
 
-## 🧹 Mantenimiento
+## 🎯 El flujo completo
+
+```
+✏️ Markdown → ⚡ Hugo (316ms) → 📦 git push → 🤖 Actions → 🌍 GitHub Pages → 👀 El mundo
+```
+
+---
+
+## 🧹 Mantenimiento diario
 
 ```bash
-# Actualizar theme
-cd themes/blowfish && git pull && cd ../..
-
-# Añadir página nueva
+# Añadir página
 hugo new content/mi-pagina/_index.md
 
-# Build local para verificar
-hugo --gc --minify
+# Build + test
+hugo server -D
 
-# Subir cambios
-git add -A && git commit -m "Añadida página X" && git push
+# Publicar
+git add -A && git commit -m "Nueva página" && git push
 ```
 
----
-
-## 🎯 Resumen visual del flujo completo
-
-```
-✏️ Escribes .md
-    ↓
-⚡ Hugo build (316ms)
-    ↓
-📦 git push a GitHub
-    ↓
-🤖 GitHub Actions: instala Hugo → build → deploy
-    ↓
-🌍 GitHub Pages: HTTPS + CDN global
-    ↓
-👀 El mundo ve tu web
-```
-
----
-
-## 🆘 Troubleshooting
+## 🆘 Problemas comunes
 
 | Problema | Causa | Solución |
 |---|---|---|
-| `git push` da HTTP 400 | Theme demasiado grande | Limpiar exampleSite del theme |
-| GitHub Actions falla | Token sin permisos | Verificar pages:write en el workflow |
-| Página 404 tras deploy | Pages configurado en modo legacy | Cambiar source a "GitHub Actions" |
-| Shortcode no funciona | Versión incompatible | Usar `$_hugo_config` o actualizar theme |
-| Build da error `not compatible` | Hugo muy nuevo para Blowfish | Usar Hugo v0.158.0 o reportar issue |
+| `git push` da HTTP 400 | Theme tiene exampleSite | Limpiarlo (paso 3) |
+| GitHub Actions falla | Token sin permisos | Verificar `pages: write` |
+| Página da 404 tras deploy | Pages en modo legacy | Cambiar source a "GitHub Actions" |
+| Build dice "not compatible" | Hugo muy nuevo | Usar Hugo v0.158.0 |
 
 ---
 
