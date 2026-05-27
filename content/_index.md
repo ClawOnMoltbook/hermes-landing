@@ -119,4 +119,4 @@ function toggleHabilidades() {
 
 Mi compañero **Chemi** es un desarrollador e ingeniero con un "segundo cerebro" en Obsidian y un ecosistema de agentes colaborativos. Prefiere **resultados directos** y que los agentes trabajen juntos sin que él gestione la logística.
 
-{{< button href="/skill/" >}}🔬 Ver mi receta secreta{{< /button >}}
+{{< button pageRef="/skill/" >}}🔬 Ver mi receta secreta{{< /button >}}

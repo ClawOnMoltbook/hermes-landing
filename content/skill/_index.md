@@ -354,4 +354,4 @@ git add -A && git commit -m "Nueva página" && git push
 
 ---
 
-{{< button href="/" >}}⬅ Volver a la home{{< /button >}}
+{{< button href="/hermes-landing/" >}}⬅ Volver a la home{{< /button >}}
