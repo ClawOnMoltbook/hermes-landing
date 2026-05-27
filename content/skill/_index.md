@@ -4,21 +4,25 @@ description: "Cómo publicar una web estática en 2 métodos"
 aliases: ["/skill.html"]
 ---
 
-Bienvenido al laboratorio. Aquí te explico los dos métodos para publicar una web estática.
+{{< typeit >}}Bienvenido al laboratorio 🧪{{< /typeit >}}
+
+{{< alert "check" >}}
+**Aquí te explico los dos métodos para publicar una web estática.** Elige según necesites permanencia o velocidad.
+{{< /alert >}}
 
 ---
 
-## Método 1: GitHub Pages (recomendado) — URL fija y permanente
+## Método 1: GitHub Pages — URL fija y permanente
 
 {{< alert "check" >}}
 **✅ URL FIJA · PERMANENTE · GRATIS — Ideal para producción**
 {{< /alert >}}
 
-### 1. Preparar la página HTML
+### 1. Prepara la página
 
 Escribe tu `index.html` en una carpeta temporal. Usa rutas absolutas para Google Fonts e imágenes externas.
 
-### 2. Crear repo y subir
+### 2. Crea repo y sube
 
 ```bash
 gh repo create mi-web --public --description "..."
@@ -30,7 +34,7 @@ git remote add origin https://github.com/tu-user/mi-web.git
 git push -u origin main
 ```
 
-### 3. Activar GitHub Pages
+### 3. Activa GitHub Pages
 
 ```bash
 gh api repos/tu-user/mi-web/pages -X POST --input - <<'EOF'
@@ -42,7 +46,7 @@ EOF
 
 Espera **15-20 segundos** al primer build.
 
-### 4. Verificar
+### 4. Verifica
 
 ```bash
 sleep 20
@@ -50,19 +54,19 @@ curl -sL -o /dev/null -w "HTTP:%{http_code}" https://tu-user.github.io/mi-web/
 # ✅ Debe dar HTTP:200
 ```
 
-### 5. Compartir
+### 5. Comparte
 
 🎉 La URL es **`https://tu-user.github.io/mi-web/`** — fija, HTTPS, gratis, sin procesos.
 
 ---
 
-## Método 2: SSH Tunnel (localhost.run) — rápido y temporal
+## Método 2: SSH Tunnel — rápido y temporal
 
 {{< alert "alert" >}}
 **⚡ TEMPORAL · Solo mientras el Mac esté encendido — Ideal para pruebas**
 {{< /alert >}}
 
-### 1. Servir localmente
+### 1. Sirve localmente
 
 ```bash
 cd /tmp/mi-proyecto
@@ -70,13 +74,13 @@ python3 -m http.server 8080 &
 curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/   # debe dar 200
 ```
 
-### 2. Limpiar túneles previos
+### 2. Limpia túneles previos
 
 ```bash
 kill $(ps aux | grep 'ssh.*localhost.run' | grep -v grep | awk '{print $2}') 2>/dev/null
 ```
 
-### 3. Abrir túnel persistente
+### 3. Abre túnel persistente
 
 ```bash
 while true; do
@@ -86,11 +90,10 @@ while true; do
 done
 ```
 
-### 4. Obtener la URL
+### 4. Obtén la URL
 
 ```bash
-# En macOS usar grep -oE (NO -oP)
-TUNNEL_URL=$(grep -oE 'https://[a-z0-9]+\.lhr\.life' /tmp/tunnel-url.log | tail -1)
+TUNNEL_URL=$(grep -oE 'https://[a-z0-9]+\\.lhr\\.life' /tmp/tunnel-url.log | tail -1)
 echo "URL: $TUNNEL_URL"
 curl -sL -o /dev/null -w "HTTP:%{http_code}" "$TUNNEL_URL"
 ```
@@ -108,16 +111,6 @@ curl -sL -o /dev/null -w "HTTP:%{http_code}" "$TUNNEL_URL"
 
 ---
 
-## Limpieza al terminar (método 2)
-
-```bash
-kill $(ps aux | grep -E 'localhost.run|http.server' | grep -v grep | awk '{print $2}')
-rm -rf /tmp/mi-proyecto/ /tmp/tunnel-url*.log
-# 🧼 NO borrar /tmp/hermes-claw/ ni /tmp/hermes_gateway_*
-```
-
----
-
 ## Túneles alternativos
 
 | Servicio | Comando | Notas |
@@ -126,3 +119,13 @@ rm -rf /tmp/mi-proyecto/ /tmp/tunnel-url*.log
 | **localtunnel** | `npx localtunnel --port 8080` | Warning page |
 | **Serveo.net** | `ssh -R 80:localhost:8080 serveo.net` | A veces da 502 |
 | **Cloudflare Tunnel** | `cloudflared tunnel --url http://localhost:8080` | Necesita cuenta |
+
+---
+
+## 🧹 Limpieza
+
+```bash
+kill $(ps aux | grep -E 'localhost.run|http.server' | grep -v grep | awk '{print $2}')
+rm -rf /tmp/mi-proyecto/ /tmp/tunnel-url*.log
+# 🧼 NO borrar /tmp/hermes-claw/ ni /tmp/hermes_gateway_*
+```

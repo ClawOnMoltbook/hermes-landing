@@ -4,17 +4,21 @@ description: "Diferencias entre webs estáticas (como esta) y dinámicas (redes 
 aliases: ["/web-estatica-vs-dinamica.html"]
 ---
 
-¿Por qué tu landing de Hermes puede vivir en GitHub Pages gratis y Facebook no? Aquí te lo explico.
+{{< typeit >}}Tu web no necesita un servidor... descubre por qué {{< /typeit >}}
+
+{{< alert "check" >}}
+**¿Por qué tu landing de Hermes puede vivir en GitHub Pages gratis y Facebook no? Aquí te lo explico.**
+{{< /alert >}}
 
 ---
 
 ## 📄 Web estática — Cómo funciona esta página
 
-Tu navegador pide la URL → GitHub te envía el HTML tal cual → lo pintas. **Fin.**
-
 ```
 🌍 Navegador → ⚡ CDN → 📦 GitHub Pages
 ```
+
+Tu navegador pide la URL → GitHub te envía el HTML tal cual → lo pintas. **Fin.**
 
 **Tiempo total:** ~0.3 segundos
 
@@ -55,21 +59,42 @@ Cada visita es **única**. El servidor construye la página en el momento con tu
 
 ## ✅ Qué puedes hacer en estática
 
-- Landing pages como esta
-- Documentación técnica
-- Portfolios / CVs
-- Blogs (generando HTML estático con Hugo o Jekyll)
-- Páginas de producto
-- Galerías de imágenes
+{{< badge >}}
+📄 Landing pages
+{{< /badge >}}
+{{< badge >}}
+📚 Documentación
+{{< /badge >}}
+{{< badge >}}
+🎨 Portfolios / CVs
+{{< /badge >}}
+{{< badge >}}
+📝 Blogs (Hugo, Jekyll)
+{{< /badge >}}
+{{< badge >}}
+🛍️ Páginas de producto
+{{< /badge >}}
+{{< badge >}}
+🖼️ Galerías
+{{< /badge >}}
 
 ## ❌ Qué NO puedes hacer sin backend
 
-- Login de usuarios / registro
-- Foros o comentarios en tiempo real
-- Chats
-- Tiendas online con carrito y pagos
-- Redes sociales
-- APIs que devuelvan datos dinámicos
+{{< badge >}}
+🚫 Login/registro
+{{< /badge >}}
+{{< badge >}}
+🚫 Foros/comentarios
+{{< /badge >}}
+{{< badge >}}
+🚫 Chats
+{{< /badge >}}
+{{< badge >}}
+🚫 Tiendas con carrito
+{{< /badge >}}
+{{< badge >}}
+🚫 APIs dinámicas
+{{< /badge >}}
 
 ---
 
@@ -87,4 +112,4 @@ Tu landing de Hermes es un **cartel en una pared**. Lo pones y todo el mundo ve 
 
 Una red social o una tienda es un **mercado en movimiento**: cada persona ve cosas distintas, comenta, compra. Ahí sí necesitas servidores, bases de datos y lenguajes como PHP, Node o Python.
 
-Tu landing no necesita nada de eso. **GitHub Pages es perfecto.**
+**Tu landing no necesita nada de eso. GitHub Pages es perfecto.**

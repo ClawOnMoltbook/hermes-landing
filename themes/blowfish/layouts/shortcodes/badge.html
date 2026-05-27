@@ -1,1 +1,15 @@
-{{ partial "badge.html" .Inner }}
+{{ $_hugo_config := `{ "version": 1 }` }}
+{{- $linkTitle := .Inner -}}
+{{- $useSecondaryColor := false -}}
+{{- if (reflect.IsMap .Params) -}}
+  {{- if .Params.useSecondaryColor -}}{{- $useSecondaryColor = .Params.useSecondaryColor -}}{{- end -}}
+{{- end -}}
+<span class="flex cursor-pointer">
+  {{- if $useSecondaryColor -}}
+    <span class="rounded-md border border-secondary-400 px-1 py-[1px] text-xs font-normal text-secondary-700 dark:border-secondary-600 dark:text-secondary-400">
+  {{- else -}}
+    <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+  {{- end -}}
+    {{- $linkTitle -}}
+  </span>
+</span>

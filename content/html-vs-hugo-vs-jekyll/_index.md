@@ -4,14 +4,18 @@ description: "Cómo hacemos la web ahora y qué alternativas tenemos"
 aliases: ["/html-vs-hugo-vs-jekyll.html"]
 ---
 
-Los tres son estáticos y funcionan en GitHub Pages gratis. Pero cada uno tiene su personalidad.
+{{< typeit >}}Los tres son estáticos... cada uno con su personalidad {{< /typeit >}}
+
+{{< alert "check" >}}
+**Los tres funcionan en GitHub Pages gratis. Pero cada uno tiene su personalidad.**
+{{< /alert >}}
 
 ---
 
-## 📄 HTML plano — Ahora mismo
+## 📄 HTML plano — El clásico
 
 {{< alert "check" >}}
-▸ **AHORA MISMO** — Escribimos HTML directamente.
+**Así empezábamos — HTML a pelo, sin frameworks, sin build.**
 {{< /alert >}}
 
 ```html
@@ -30,12 +34,13 @@ Los tres son estáticos y funcionan en GitHub Pages gratis. Pero cada uno tiene 
 
 ---
 
-## ⚡ Hugo — El que estamos usando ahora
+## ⚡ Hugo — El que usamos ahora
 
-**Go — Single binary.** Escribes en Markdown y usas plantillas. Hugo genera el HTML.
+{{< alert "pencil" >}}
+**Go — Single binary. Escribes Markdown y Hugo genera el HTML. El que usamos para esta web.**
+{{< /alert >}}
 
 ```go
-// layouts/_default/baseof.html
 <html>
   <head><title>{{ .Title }}</title></head>
   <body>{{ block "main" }}{{ .Content }}{{ end }}</body>
@@ -45,23 +50,29 @@ Los tres son estáticos y funcionan en GitHub Pages gratis. Pero cada uno tiene 
 | ✅ Pros | ❌ Contras |
 |---|---|
 | Rapidísimo (<1ms/página) | Curva de aprendizaje |
-| Markdown + temas | Sistema de templates |
+| Markdown + temas con Tailwind | Sistema de templates propio |
 | Multilenguaje integrado | |
 
-**Características:**
-- Escribes en Markdown (como en Obsidian)
-- Plantillas reutilizables — cambias 1 cosa, se actualiza todo
-- Build ultrarrápido
-- Temas pre-hechos (cientos gratis)
-- Blog con posts, fechas, categorías nativo
-- Multilenguaje integrado
-- No necesita Ruby ni Python — solo el binario de Hugo
+{{< badge >}}
+🚀 Build ultrarrápido
+{{< /badge >}}
+{{< badge >}}
+🎨 Temas pre-hechos
+{{< /badge >}}
+{{< badge >}}
+📝 Blog nativo
+{{< /badge >}}
+{{< badge >}}
+🌍 Multilenguaje
+{{< /badge >}}
 
 ---
 
 ## 💎 Jekyll — Nativo de GitHub Pages
 
-**Ruby.** Escribes en Markdown con Liquid templates. Creado por Tom Preston-Werner (co-fundador de GitHub).
+{{< alert "info" >}}
+**Ruby. Escribes Markdown con Liquid templates. Creado por el co-fundador de GitHub.**
+{{< /alert >}}
 
 ```markdown
 ---
@@ -71,23 +82,14 @@ tags: [bienvenida]
 ---
 
 ## Mi primer post
-
 Esto está escrito en **Markdown**.
 ```
 
 | ✅ Pros | ❌ Contras |
 |---|---|
-| GitHub lo compila solo | Lento en builds grandes |
+| GitHub lo compila solo — sin build local | Lento en builds grandes |
 | Sin instalar nada local | Ruby pesado de instalar |
 | El más veterano (2010) | |
-
-**Características:**
-- Escribes en Markdown
-- Integración nativa con GitHub Pages
-- No necesitas build local — GitHub lo hace por ti
-- Posts con fecha automática
-- Categorías, tags, RSS incluidos
-- Temas oficiales mantenidos por GitHub
 
 ---
 
@@ -109,7 +111,7 @@ Esto está escrito en **Markdown**.
 
 ---
 
-## 🏗️ Arquitectura de cada uno
+## 🏗️ Arquitectura
 
 **📄 HTML plano:**
 ```
@@ -123,9 +125,12 @@ Esto está escrito en **Markdown**.
 
 **💎 Jekyll:**
 ```
-✏️ Escribes .md → 📦 git push → 💎 GitHub compila Jekyll → 🌍 GitHub Pages
+✏️ Escribes .md → 📦 git push → 💎 GitHub compila → 🌍 GitHub Pages
 ```
-*No necesitas instalar nada. GitHub ejecuta Jekyll por ti.*
+
+{{< alert "info" >}}
+Con Jekyll, no necesitas instalar nada local. GitHub ejecuta Jekyll por ti automáticamente.
+{{< /alert >}}
 
 ---
 
@@ -139,4 +144,4 @@ Esto está escrito en **Markdown**.
 | Portfolio visual | ⚡ Hugo (Blowfish, PaperMod) |
 | Sin ganas de instalar nada local | 💎 Jekyll |
 
-💡 **Dato:** El sitio de Hermes Agent (hermes-agent.nousresearch.com) usa Hugo. También la documentación de Google, Kubernetes y Docker.
+💡 **Dato:** El sitio de Hermes Agent (hermes-agent.nousresearch.com) usa Hugo. También la documentación de **Google**, **Kubernetes** y **Docker**.

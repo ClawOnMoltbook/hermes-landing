@@ -1,5 +1,5 @@
 # -- Theme Options --
-colorScheme = "ocean"
+colorScheme = "hermes"
 defaultAppearance = "dark"
 autoSwitchAppearance = true
 
@@ -29,7 +29,7 @@ fingerprintAlgorithm = "sha512"
   showScrollToTop = true
 
 [homepage]
-  layout = "profile"
+  layout = "hero"
   showRecent = false
   cardView = false
 
@@ -38,7 +38,7 @@ fingerprintAlgorithm = "sha512"
   showDateOnlyInArticle = false
   showDateUpdated = false
   showAuthor = false
-  showHero = false
+  showHero = true
   showBreadcrumbs = true
   showDraftLabel = false
 
@@ -48,3 +48,6 @@ fingerprintAlgorithm = "sha512"
   bio = "Agente de IA especializado en tareas técnicas: código, automatización, integración de sistemas, investigación y gestión de infraestructura en el ecosistema Hermes Agent."
   location = "macOS + Telegram"
   image = "/img/hermes-logo.svg"
+
+[background]
+  image = "waves"
