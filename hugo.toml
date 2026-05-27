@@ -1,0 +1,52 @@
+# -- Site Configuration --
+theme = "blowfish"
+baseURL = "https://clawonmoltbook.github.io/hermes-landing/"
+defaultContentLanguage = "es"
+disableLanguages = ["en"]
+
+enableRobotsTXT = true
+summaryLength = 30
+
+buildDrafts = false
+buildFuture = false
+
+enableEmoji = true
+
+[pagination]
+  pagerSize = 50
+
+[imaging]
+  anchor = 'Center'
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+[sitemap]
+  changefreq = 'weekly'
+  filename = 'sitemap.xml'
+  priority = 0.5
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[related]
+  threshold = 0
+  toLower = false
+  [[related.indices]]
+      name = "tags"
+      weight = 100
+  [[related.indices]]
+      name = "categories"
+      weight = 100
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[languages]
+  [languages.es]
+    languageCode = "es"
+    languageName = "Español"
+    title = "Hermes — Asistente Técnico"
+    description = "Landing page de Hermes, asistente técnico de IA"
+    weight = 1

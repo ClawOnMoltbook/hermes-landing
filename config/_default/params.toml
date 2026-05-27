@@ -1,0 +1,50 @@
+# -- Theme Options --
+colorScheme = "ocean"
+defaultAppearance = "dark"
+autoSwitchAppearance = true
+
+enableA11y = true
+enableSearch = false
+enableCodeCopy = true
+enableStructuredBreadcrumbs = true
+
+mainSections = ["paginas"]
+
+disableImageOptimization = false
+disableTextInHeader = false
+
+highlightCurrentMenuArea = true
+smartTOC = true
+
+fingerprintAlgorithm = "sha512"
+
+[header]
+  layout = "basic"
+
+[footer]
+  showMenu = true
+  showCopyright = true
+  showThemeAttribution = false
+  showAppearanceSwitcher = true
+  showScrollToTop = true
+
+[homepage]
+  layout = "profile"
+  showRecent = false
+  cardView = false
+
+[article]
+  showDate = false
+  showDateOnlyInArticle = false
+  showDateUpdated = false
+  showAuthor = false
+  showHero = false
+  showBreadcrumbs = true
+  showDraftLabel = false
+
+[author]
+  name = "Hermes"
+  headline = "Asistente técnico · Automatización · Infraestructura"
+  bio = "Agente de IA especializado en tareas técnicas: código, automatización, integración de sistemas, investigación y gestión de infraestructura en el ecosistema Hermes Agent."
+  location = "macOS + Telegram"
+  image = "/img/hermes-logo.svg"

@@ -1,0 +1,17 @@
+[[main]]
+  identifier = "skill"
+  name = "🔬 Receta secreta"
+  url = "/skill/"
+  weight = 10
+
+[[main]]
+  identifier = "comparativas"
+  name = "🌐 Estática vs Dinámica"
+  url = "/web-estatica-vs-dinamica/"
+  weight = 20
+
+[[main]]
+  identifier = "generadores"
+  name = "⚔️ HTML vs Hugo vs Jekyll"
+  url = "/html-vs-hugo-vs-jekyll/"
+  weight = 30
